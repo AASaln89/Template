@@ -25,40 +25,45 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Path Stroke="Black" Opacity="0">
+                <Rectangle Grid.Row="0" Width="20" Height="20" RadiusX="5" RadiusY="5" Stroke="Black" HorizontalAlignment="Center"/>
+                <Path x:Name="x" Stroke="Black" Opacity="0">
                     <Path.Data >
                         <GeometryGroup>
-                            <RectangleGeometry  Rect="120,0,20,20" RadiusX="5" RadiusY="5"/>
-                            <LineGeometry StartPoint="120,0" EndPoint="140,20"/>
-                            <LineGeometry StartPoint="140,0" EndPoint="120,20"/>
+                            <LineGeometry StartPoint="125,5" EndPoint="140,20"/>
+                            <LineGeometry StartPoint="140,5" EndPoint="125,20"/>
                         </GeometryGroup>
                     </Path.Data>
                 </Path>
                 <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" VerticalAlignment="Top" HorizontalAlignment="Center"/>
             </Grid>
             <ControlTemplate.Triggers>
-                <Trigger Property="IsChecked" Value="True">
-                    <Setter Property="Opacity" Value="1"/>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter TargetName="x" Property="Path.Opacity" Value="1"/>
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <ControlTemplate TargetType="CheckBox" x:Key="Indeterminate">
+        <ControlTemplate TargetType="CheckBox" x:Key="Indeterminate" x:Name="ind">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Path Stroke="Black" Opacity="0">
+                <Rectangle Grid.Row="0" Width="20" Height="20" RadiusX="5" RadiusY="5" Stroke="Black" HorizontalAlignment="Center"/>
+                <Path x:Name="C" Stroke="Black" Opacity="0">
                     <Path.Data>
                         <GeometryGroup>
-                            <RectangleGeometry Rect="120,0,20,20" RadiusX="5" RadiusY="5"/>
-                            <EllipseGeometry Center="130,10" RadiusX="5" RadiusY="5"/>
-                            <EllipseGeometry Center="130,10" RadiusX="5" RadiusY="5"/>
+                            <EllipseGeometry Center="132,13" RadiusX="5" RadiusY="5"/>
+                            <EllipseGeometry Center="132,13" RadiusX="5" RadiusY="5"/>
                         </GeometryGroup>
                     </Path.Data>
                 </Path>
                 <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" VerticalAlignment="Top" HorizontalAlignment="Center" />
             </Grid>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter TargetName="C" Property="Path.Opacity" Value="1"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
         </ControlTemplate>
     </Window.Resources>
     <Grid>
